@@ -1,9 +1,7 @@
 import {
   Controller,
-  Get,
   Post,
   Body,
-  Param,
   UsePipes,
   ValidationPipe
 } from '@nestjs/common';
@@ -19,12 +17,5 @@ export class UserController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
-
-  /*
-  @Get()
-  findOne() {
-    return this.userService.findOne();
-  }
-  */
 
 }

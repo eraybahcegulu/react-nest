@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     UserModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
@@ -22,7 +23,6 @@ import { AuthModule } from './auth/auth.module';
       }),
       inject: [ConfigService],
     }),
-    AuthModule
   ],
 })
 export class AppModule { }
