@@ -15,8 +15,9 @@ export class AuthController {
 
   @Get('getUserInfo')
   @UseGuards(AuthGuard('jwt'))
-  getUserInfo(@Req() req ) {
+  getUserInfo(@Req() req, ) {
     const { id, email } = req.user;
-    return {id, email};
+    const token = this.jwtService.sign({ id, email });
+    return {id, email, token};
   }
 }

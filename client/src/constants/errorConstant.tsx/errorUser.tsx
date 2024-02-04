@@ -4,8 +4,7 @@ import { IApiResponse } from "../../types/types";
 
 const handleInvalidLoginError = (error: AxiosError<IApiResponse>) => {
     if (error.response) {
-        const responseData: IApiResponse = error.response.data;
-        invalidLogin(responseData.message);
+        invalidLogin(error.response.data.message);
     } else {
         failedServer(error.message);
     }

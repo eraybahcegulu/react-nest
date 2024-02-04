@@ -4,23 +4,37 @@ import { IApiResponse, IUser, IUserContext, IUserProviderProps } from '../types/
 import { AxiosError } from 'axios';
 import { handleInvalidLoginError } from '../constants/errorConstant.tsx/errorUser';
 
+import useCategorySlice from '../hooks/useCategorySlice';
+
 const UserContext = createContext<IUserContext>({
     user: null,
     loading: false,
-    setLoading: () => {},
-    getUser: async () => {},
+    setLoading: () => { },
+    getUser: async () => { },
 });
 
 const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<IUser | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
+    const { fetchCategories } = useCategorySlice();
+
     const fetchUserData = async (token: string) => {
         try {
             const res = await userInfoService(token);
             //console.log("userInfo res:", res)
-            token = res.data.token;
+            const userToken = res.data.token;
             setUser(res.data);
+
+            if (localStorage.getItem('token')) {
+                localStorage.setItem('token', userToken);
+            }
+
+            if (sessionStorage.getItem('token')) {
+                sessionStorage.setItem('token', userToken);
+            }
+
+            fetchCategories(userToken);
 
             setLoading(false);
         } catch (error) {

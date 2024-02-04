@@ -9,6 +9,11 @@ export interface IUser{
     email: string,
 }
 
+export interface ICategories{
+    id: number,
+    title: string
+}
+
 export interface IApiResponse{
     message: string;
 }

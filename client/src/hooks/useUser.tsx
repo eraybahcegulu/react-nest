@@ -13,15 +13,15 @@ const useUser = () => {
         try {
             const res = await loginService(values);
             //console.log("login res:", res)
-            const token = res.data.token;
+            const userToken = res.data.token;
 
             if (isChecked === true) {
-                localStorage.setItem('token', token);
+                localStorage.setItem('token', userToken);
             } else {
-                sessionStorage.setItem('token', token);
+                sessionStorage.setItem('token', userToken);
             }
 
-            await getUser(token);
+            await getUser(userToken);
 
             navigate(`/home`,)
 
