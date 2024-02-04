@@ -14,7 +14,7 @@ export interface IApiResponse{
 }
 
 export interface IUserContext {
-    user: IUser[] | null;
+    user: IUser | null;
     loading: boolean;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
     getUser: (token: string) => Promise<void> ;

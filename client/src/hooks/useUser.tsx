@@ -7,13 +7,19 @@ import { useNavigate } from 'react-router-dom';
 
 const useUser = () => {
     const navigate = useNavigate();
-    const { getUser = async () => {} } = useUserContext() || {};
+    const { getUser } = useUserContext();
 
-    const login = async (values: ILogin) => {
+    const login = async (isChecked: boolean, values: ILogin) => {
         try {
             const res = await loginService(values);
-            console.log("login res:", res)
+            //console.log("login res:", res)
             const token = res.data.token;
+
+            if (isChecked === true) {
+                localStorage.setItem('token', token);
+            } else {
+                sessionStorage.setItem('token', token);
+            }
 
             await getUser(token);
 
