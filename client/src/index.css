@@ -4,6 +4,28 @@
 @tailwind components;
 @tailwind utilities;
 
+.ant-btn,
+.ant-input,
+.ant-card,
+.ant-modal,
+.ant-select,
+.ant-table-container,
+.ant-message-notice,
+.ant-notification-notice,
+.ant-form,
+.ant-form-item-required,
+.ant-alert,
+.ant-result,
+.ant-badge,
+.ant-radio-button-wrapper,
+.ant-popover,
+.ant-steps-item-title,
+.ant-steps-item-description,
+.ant-carousel,
+.ant-form-item-explain-error{
+  font-family: 'Electrolize', sans-serif;
+}
+
 body {
   margin: 0;
   font-family: 'Electrolize', sans-serif;
